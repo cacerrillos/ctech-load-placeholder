@@ -3,7 +3,7 @@
   "authors": [
     "Carlos Cerrillos <carlos@cerrillostech.com>"
   ],
-  "description": "",
+  "description": "Replaces content with a spinner during loading",
   "main": "ctech-load-placeholder.html",
   "moduleType": [],
   "license": "Closed Source",
@@ -18,9 +18,7 @@
   ],
   "dependencies": {
     "polymer": "~1",
-    "iron-elements": "PolymerElements/iron-elements#~1.0.4",
-    "neon-elements": "PolymerElements/neon-elements#~1.0.0",
-    "paper-elements": "PolymerElements/paper-elements#~1.0.5",
+    "paper-spinner": "PolymerElements/paper-spinner#~1",
     "jquery": "~2"
   }
 }
