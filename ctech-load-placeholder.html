@@ -2,6 +2,7 @@
 <dom-module id="ctech-load-placeholder">
   <link rel="import" href="../polymer/polymer.html">
   <link rel="import" href="../paper-spinner/paper-spinner.html">
+  <script type="text/javascript" src="../jquery/dist/jquery.min.js"></script>
   <template>
     <style>
       :host {
@@ -51,9 +52,19 @@
         }
       },
       _onInternalEvent: function(e) {
-        console.log(e);
-        if(e.target.classList.contains(this.attrForLoadAction)) {
-          this.loading = true;
+        var element;
+        if(e.srcElement) element = e.srcElement;
+        else if(e.target) element = e.target;
+
+        var localElements = Polymer.dom(this).querySelectorAll('.' + this.attrForLoadAction);
+        var closestWithLoadAttr = $(element).closest('.' + this.attrForLoadAction);
+        if(localElements.length > 0) {
+          for(var i = 0; i < localElements.length; i++) {
+            if(closestWithLoadAttr[0] == localElements[i]) {
+              this.loading = true;
+            }
+          }
+          
         }
       }
     });
