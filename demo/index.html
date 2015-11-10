@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../ctech-load-placeholder.html">
+</head>
+<body>
+  <ctech-load-placeholder-demo></ctech-load-placeholder-demo>
+</body>
+</html>
+<dom-module id="ctech-load-placeholder-demo">
+
+<template>
+  <style>
+    
+  </style>
+  <ctech-load-placeholder id="loader" on-click="test"><button>Just Reset</button><button class="ctech-do-load">Content Button</button></ctech-load-placeholder>
+  <button on-click="done">Done Loading</button>
+</template>
+
+<script>
+  Polymer({
+    is: 'ctech-load-placeholder-demo',
+    properties: {
+      selected: {
+        type: Object
+      }
+    },
+    test: function(e) {
+      console.log(e);
+    },
+    done: function() {
+      this.$.loader.loading = false;
+    },
+    _open: function() {
+      this.$.demo.open();
+    },
+    _close: function() {
+      this.$.demo.close();
+    },
+    ready: function() {
+      
+    }
+  });
+</script>
+</dom-module>

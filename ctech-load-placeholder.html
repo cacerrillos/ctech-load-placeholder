@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<dom-module id="ctech-load-placeholder">
+  <link rel="import" href="../polymer/polymer.html">
+  <link rel="import" href="../paper-spinner/paper-spinner.html">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <div id="content">
+      <content></content>
+    </div>
+    <div id="loading" style="visibility: hidden; display: none;">
+      <paper-spinner id="spinner" active></paper-spinner>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: 'ctech-load-placeholder',
+      properties: {
+        loading: {
+          type: Boolean,
+          value: false,
+          observer: '_onLoadingChanged'
+        },
+        attrForLoadAction: {
+          type: String,
+          value: "ctech-do-load"
+        }
+      },
+      listeners: {
+        'click': '_onInternalEvent'
+      },
+      _onLoadingChanged: function(e) {
+        if(e) {
+          this.$.content.style.visibility = "hidden";
+          this.$.content.style.display = "none";
+          this.$.loading.style.visibility = "visible";
+          this.$.loading.style.display = "block";
+          this.$.spinner.active = true;
+        } else {
+          this.$.content.style.visibility = "visible";
+          this.$.content.style.display = "block";
+          this.$.loading.style.visibility = "hidden";
+          this.$.loading.style.display = "none";
+          this.$.spinner.active = true;
+        }
+      },
+      _onInternalEvent: function(e) {
+        if(e.target.classList.contains(this.attrForLoadAction)) {
+          this.loading = true;
+        }
+      },
+      _debug: function(e) {
+        this.loading = true;
+        console.log(e);
+      }
+    });
+  </script>
+</dom-module>
